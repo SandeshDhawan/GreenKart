@@ -6,10 +6,15 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class basepage {
 
@@ -82,5 +87,45 @@ public class basepage {
 
 	public void maximizeBrowser() {
 		driver.manage().window().maximize();
+	}
+
+	public boolean verifyVisibilityOfElement(WebElement Locator) {
+		return Locator.isDisplayed();
+	}
+
+	public boolean checkElementIsClickable(WebElement locator) {
+		return locator.isEnabled();
+	}
+
+	public void quit() {
+		driver.quit();
+	}
+
+	public void enterData(WebElement locator, String value) {
+		locator.sendKeys(value);
+	}
+
+	public String getTextValue(WebElement loactor) {
+		return loactor.getText();
+	}
+
+	public void cleartextboxvalue(WebElement locator) {
+		locator.clear();
+	}
+
+	public void sleep(int time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void clickElement(WebElement locator) {
+		locator.click();
+	}
+
+	public String getAttributeValue(WebElement locator, String attribute) {
+		return locator.getAttribute(attribute);
 	}
 }
