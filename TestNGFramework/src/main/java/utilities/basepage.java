@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -101,6 +102,10 @@ public class basepage {
 		driver.quit();
 	}
 
+	public void close() {
+		driver.close();
+	}
+
 	public void enterData(WebElement locator, String value) {
 		locator.sendKeys(value);
 	}
@@ -127,5 +132,25 @@ public class basepage {
 
 	public String getAttributeValue(WebElement locator, String attribute) {
 		return locator.getAttribute(attribute);
+	}
+
+	public void switch_to_new_window() {
+
+		String parent = driver.getWindowHandle();
+		Set<String> allwindows = driver.getWindowHandles();
+		System.out.println(allwindows.size());
+
+		for (String window : allwindows) {
+			if (!window.equals(parent))
+				driver.switchTo().window(window);
+		}
+	}
+
+	public void switch_to_parent_window(String parent) {
+		driver.switchTo().window(parent);
+	}
+
+	public String get_parent_window_handle() {
+		return driver.getWindowHandle();
 	}
 }

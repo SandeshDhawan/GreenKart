@@ -75,10 +75,18 @@ public class HomePageTest extends basepage {
 		hp.add_n_Kg_vegetable("Walnuts", 5);
 
 	}
-	
-	@Test(priority=10)
-	public void verify_user_is_able_to_add_multilpe_vegetables(){
-		
+
+	@Test(priority = 10)
+	public void verify_user_is_able_to_add_multilpe_vegetables() {
+		HomePage hp = new HomePage(driver);
+		hp.addMultipleVegetables("Beetroot - 5 Kg,Tomato - 2 Kg,Pumpkin - 1 Kg,Apple - 4 Kg,Orange - 7 Kg");
+	}
+
+	@Test(priority = 11)
+	public void verify_added_vegetables_in_cart() {
+		HomePage hp = new HomePage(driver);
+		hp.addMultipleVegetables("Apple - 4 Kg,Orange - 7 Kg");
+		hp.addedVegetablesInCart("Apple - 4 Kg,Orange - 7 Kg");
 	}
 
 	@AfterClass

@@ -15,8 +15,9 @@ import org.testng.Assert;
 
 import utilities.basepage;
 
-public class HomePage extends basepage {
+public class HomePage {
 	public WebDriver driver;
+	basepage basepage = new basepage();
 
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
@@ -24,78 +25,115 @@ public class HomePage extends basepage {
 	}
 
 	public void greenKartLogo() {
-		Assert.assertTrue(verifyVisibilityOfElement(greenkartlogo));
+		Assert.assertTrue(basepage.verifyVisibilityOfElement(greenkartlogo));
 	}
 
 	public void topDealLink() {
-		Assert.assertTrue(checkElementIsClickable(topdeals));
+		Assert.assertTrue(basepage.checkElementIsClickable(topdeals));
 	}
 
 	public void flightBookingLink() {
-		Assert.assertTrue(checkElementIsClickable(flightbooking));
+		Assert.assertTrue(basepage.checkElementIsClickable(flightbooking));
 	}
 
 	public void itemsAndPriceSection() {
-		Assert.assertTrue(verifyVisibilityOfElement(items));
-		Assert.assertTrue(verifyVisibilityOfElement(price));
+		Assert.assertTrue(basepage.verifyVisibilityOfElement(items));
+		Assert.assertTrue(basepage.verifyVisibilityOfElement(price));
 	}
 
 	public void cartIcon() {
-		Assert.assertTrue(checkElementIsClickable(carticon));
+		Assert.assertTrue(basepage.checkElementIsClickable(carticon));
 	}
 
 	public void searchvegetable(String vegetablename) {
-		driver.navigate().refresh();
-		enterData(search, vegetablename);
-		sleep(2000);
-		String vegname = getTextValue(searchvegname);
+		basepage.cleartextboxvalue(search);
+		basepage.enterData(search, vegetablename);
+		basepage.sleep(2000);
+		String vegname = basepage.getTextValue(searchvegname);
 		String names[] = vegname.split(" ");
 		Assert.assertEquals(names[0], vegetablename);
 	}
 
 	public void searchvegetableisnotpresent(String vegetablename) {
-		driver.navigate().refresh();
-		cleartextboxvalue(search);
-		sleep(2000);
-		enterData(search, vegetablename);
-		sleep(2000);
-		String msg = getTextValue(noresulterrormsg);
+		basepage.cleartextboxvalue(search);
+		basepage.sleep(2000);
+		basepage.enterData(search, vegetablename);
+		basepage.sleep(2000);
+		String msg = basepage.getTextValue(noresulterrormsg);
 		System.out.println(msg);
 		Assert.assertEquals(msg, "Sorry, no products matched your search!");
 
 	}
 
 	public void detailsPresentOnSearhVegetable(String vegetablename, String price) {
-		driver.navigate().refresh();
-		cleartextboxvalue(search);
-
-		enterData(search, vegetablename);
-		sleep(3000);
-		String vegname = getTextValue(searchvegname);
-		String actualprice = getTextValue(productprice);
+		basepage.cleartextboxvalue(search);
+		basepage.enterData(search, vegetablename);
+		basepage.sleep(3000);
+		String vegname = basepage.getTextValue(searchvegname);
+		String actualprice = basepage.getTextValue(productprice);
 
 		Assert.assertEquals(vegname, vegetablename);
 		Assert.assertEquals(actualprice, price);
-		checkElementIsClickable(addtocartbutton);
+		basepage.checkElementIsClickable(addtocartbutton);
 
 	}
 
 	public void add_n_Kg_vegetable(String veg, int kg) {
-		driver.navigate().refresh();
-		cleartextboxvalue(search);
-		enterData(search, veg);
-		sleep(3000);
+		basepage.cleartextboxvalue(search);
+		basepage.enterData(search, veg);
+		basepage.sleep(3000);
 
 		for (int i = 1; i < kg; i++)
-			clickElement(addquantity);
+			basepage.clickElement(addquantity);
 
-		String quantity = getAttributeValue(addedquantity, "value");
+		String quantity = basepage.getAttributeValue(addedquantity, "value");
 		System.out.println("Added Quantity = " + quantity);
 
 		Assert.assertEquals(Integer.parseInt(quantity), kg);
 
 	}
 
+	public void addMultipleVegetables(String vegetables) {
+		driver.navigate().refresh();
+		String[] vegetable = vegetables.split(",");
+		for (String veg : vegetable) {
+			String[] vegdetails = veg.split(" ");
+			searchvegetable(vegdetails[0]);
+			int quant = Integer.parseInt(vegdetails[2]);
+			if (quant != 1) {
+				for (int i = 1; i < quant; i++)
+					basepage.clickElement(addquantity);
+			}
+			addToCart(veg);
+			basepage.sleep(5000);
+		}
+	}
+
+	public void addedVegetablesInCart(String vegetables) {
+		boolean status = false;
+		basepage.clickElement(carticon);
+		String[] vegetable = vegetables.split(",");
+
+		for (int i = 0; i < vegetable.length; i++) {
+			status = false;
+			String[] veg = vegetable[i].split(" ");
+			for (WebElement product : cartproducts) {
+				if (basepage.getTextValue(product).contains(veg[0]))
+					status = true;
+			}
+		}
+
+		Assert.assertTrue(status);
+
+	}
+
+	public void addToCart(String veg) {
+		basepage.clickElement(addtocartbutton);
+	}
+
+	public void navigateToTopDeals() {
+		basepage.clickElement(topdeals);
+	}
 	// Locators
 
 	@FindBy(xpath = "//div[@class='brand greenLogo']")
@@ -136,4 +174,7 @@ public class HomePage extends basepage {
 
 	@FindBy(xpath = "//input[@type='number']")
 	WebElement addedquantity;
+
+	@FindBy(xpath = "//div[@class='cart-preview active']//p[@class='product-name']")
+	List<WebElement> cartproducts;
 }
