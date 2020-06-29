@@ -94,7 +94,7 @@ public class HomePage {
 	}
 
 	public void addMultipleVegetables(String vegetables) {
-		driver.navigate().refresh();
+		basepage.reloadbrowser(driver);
 		String[] vegetable = vegetables.split(",");
 		for (String veg : vegetable) {
 			String[] vegdetails = veg.split(" ");
@@ -133,6 +133,10 @@ public class HomePage {
 
 	public void navigateToTopDeals() {
 		basepage.clickElement(topdeals);
+	}
+
+	public void navigate_to_flight_booking_page() {
+		basepage.clickElement(flightbooking);
 	}
 	// Locators
 
