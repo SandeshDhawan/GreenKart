@@ -179,21 +179,17 @@ public class basepage {
 		driver.switchTo().alert().accept();
 	}
 
-	public void getScreenShotPath(String testcasename, WebDriver driver) {
+	public String getScreenShotPath(String testcasename, String destinationfile, WebDriver driver) {
 		TakesScreenshot screenshot = (TakesScreenshot) driver;
 		File source = screenshot.getScreenshotAs(OutputType.FILE);
 
-		Timestamp ts = new Timestamp(new Date().getTime());
-		SimpleDateFormat date_time = new SimpleDateFormat("yyyy-MM-dd'T'HH.mm.ss.mmm");
-
-		String destinationfile = System.getProperty("user.dir") + "\\TestReports\\" + date_time.format(ts) + "\\"
-				+ testcasename + ".png";
-
-		System.out.println(destinationfile);
+		destinationfile = destinationfile + "\\" + testcasename + ".png";
 		try {
 			FileUtils.copyFile(source, new File(destinationfile));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return destinationfile;
 	}
+
 }

@@ -181,4 +181,6 @@ public class HomePage {
 
 	@FindBy(xpath = "//div[@class='cart-preview active']//p[@class='product-name']")
 	List<WebElement> cartproducts;
+	
+	
 }
