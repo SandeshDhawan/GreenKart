@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -180,7 +183,13 @@ public class basepage {
 		TakesScreenshot screenshot = (TakesScreenshot) driver;
 		File source = screenshot.getScreenshotAs(OutputType.FILE);
 
-		String destinationfile = System.getProperty("user.dir") + "\\reports\\" + testcasename + ".png";
+		Timestamp ts = new Timestamp(new Date().getTime());
+		SimpleDateFormat date_time = new SimpleDateFormat("yyyy-MM-dd'T'HH.mm.ss.mmm");
+
+		String destinationfile = System.getProperty("user.dir") + "\\TestReports\\" + date_time.format(ts) + "\\"
+				+ testcasename + ".png";
+
+		System.out.println(destinationfile);
 		try {
 			FileUtils.copyFile(source, new File(destinationfile));
 		} catch (IOException e) {
