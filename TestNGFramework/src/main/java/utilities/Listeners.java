@@ -22,7 +22,6 @@ public class Listeners extends basepage implements ITestListener {
 	ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 
 	public void onTestStart(ITestResult result) {
-		// TODO Auto-generated method stub
 		test = extent.createTest(result.getMethod().getMethodName());
 		extentTest.set(test);
 	}
