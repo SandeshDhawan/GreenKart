@@ -95,6 +95,7 @@ public class HomePage {
 
 	public void addMultipleVegetables(String vegetables) {
 		basepage.reloadbrowser(driver);
+		basepage.sleep(3000);
 		String[] vegetable = vegetables.split(",");
 		for (String veg : vegetable) {
 			String[] vegdetails = veg.split(" ");
@@ -181,6 +182,5 @@ public class HomePage {
 
 	@FindBy(xpath = "//div[@class='cart-preview active']//p[@class='product-name']")
 	List<WebElement> cartproducts;
-	
-	
+
 }
