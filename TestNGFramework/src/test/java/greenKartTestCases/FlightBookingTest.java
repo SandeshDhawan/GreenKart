@@ -66,11 +66,11 @@ public class FlightBookingTest extends basepage {
 		fp.select_checkbox("Student");
 	}
 
-	@Test(priority = 7)
-	public void verify_tooltip_for_student() {
-		FlightBookingPage fp = new FlightBookingPage(driver);
-		fp.tooltip_for_student();
-	}
+//	@Test(priority = 7)
+//	public void verify_tooltip_for_student() {
+//		FlightBookingPage fp = new FlightBookingPage(driver);
+//		fp.tooltip_for_student();
+//	}
 
 	@Test(priority = 8)
 	public void verify_special_assistance_popup() {
