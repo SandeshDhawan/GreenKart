@@ -107,20 +107,20 @@ public class FlightBookingPage {
 
 	public void tooltip_for_student() {
 		System.out.println(basepage.getTextValue(student_tool_tip));
-//		Assert.assertEquals(basepage.getTextValue(student_tool_tip),
-//				"Applicable for all students above the age of 12 years studying with a bonafide school/university. Limited inventory available. Valid photo ID and educational institute I-card need to be presented for verification at check-in. Bookings under this offer are refundable. Conditions apply.");
+		Assert.assertEquals(basepage.getTextValue(student_tool_tip),
+				"Applicable for all students above the age of 12 years studying with a bonafide school/university. Limited inventory available. Valid photo ID and educational institute I-card need to be presented for verification at check-in. Bookings under this offer are refundable. Conditions apply.");
 		
-		Assert.assertEquals(basepage.getTextValue(student_tool_tip),"Test");
+//		Assert.assertEquals(basepage.getTextValue(student_tool_tip),"Test");
 	}
 
 	public void multicity_popup() {
 		basepage.sleep(5000);
 		basepage.clickElement(multicity_radio_button);
 		System.out.println(basepage.getTextValue(multicity_content));
-//		Assert.assertEquals(basepage.getTextValue(multicity_content),
-//				"Multicity booking does not mean connecting flight. Customers must ensure sufficient connecting time between flights. QAclickjet will not be responsible for missed connections due to any reason.");
+		Assert.assertEquals(basepage.getTextValue(multicity_content),
+				"Multicity booking does not mean connecting flight. Customers must ensure sufficient connecting time between flights. QAclickjet will not be responsible for missed connections due to any reason.");
 		
-		Assert.assertEquals(basepage.getTextValue(multicity_content),"Test");
+//		Assert.assertEquals(basepage.getTextValue(multicity_content),"Test");
 		basepage.clickElement(information_ok_button);
 	}
 
