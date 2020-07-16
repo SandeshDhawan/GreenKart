@@ -18,6 +18,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -40,14 +41,19 @@ public class basepage {
 			file = new FileInputStream(propertyFileName);
 			try {
 				prop.load(file);
-//				browserName = prop.getProperty("browser"); To Read a browser name from property file
-				browserName = System.getProperty("browser"); //To Read a browser name from Variable stored in jenkins
+				// browserName = prop.getProperty("browser"); To Read a browser name from property file
+				browserName = System.getProperty("browser"); // To Read a browser name from Variable stored in jenkins
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 
-			if (browserName.equalsIgnoreCase("Chrome")) {
-				driver = new ChromeDriver();
+			if (browserName.contains("chrome")) {
+				ChromeOptions options = new ChromeOptions();
+				if (browserName.contains("headless"))
+					options.addArguments("headless");
+
+				driver = new ChromeDriver(options);
+
 			} else if (browserName.equalsIgnoreCase("Firefox")) {
 				System.out.println("Firefox driver is Opening");
 				System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "\\GeckoDriver.exe");
