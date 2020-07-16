@@ -31,7 +31,7 @@ public class basepage {
 	Properties prop = new Properties();
 	String browserName = null;
 	String url;
-	String propertyFileName = "C:\\Users\\sdhawan\\TestNGFramework\\TestNGFramework\\src\\main\\java\\Utilities\\data.properties";
+	String propertyFileName = System.getProperty("user.dir") + "\\src\\main\\java\\Utilities\\data.properties";
 	FileInputStream file;
 
 	public WebDriver initializeDriver() {
@@ -40,7 +40,8 @@ public class basepage {
 			file = new FileInputStream(propertyFileName);
 			try {
 				prop.load(file);
-				browserName = prop.getProperty("browser");
+//				browserName = prop.getProperty("browser"); To Read a browser name from property file
+				browserName = System.getProperty("browser"); //To Read a browser name from Variable stored in jenkins
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -49,6 +50,7 @@ public class basepage {
 				driver = new ChromeDriver();
 			} else if (browserName.equalsIgnoreCase("Firefox")) {
 				System.out.println("Firefox driver is Opening");
+				System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "\\GeckoDriver.exe");
 				driver = new FirefoxDriver();
 			} else if (browserName.equalsIgnoreCase("IE")) {
 				driver = new InternetExplorerDriver();
