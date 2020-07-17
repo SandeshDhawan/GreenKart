@@ -4,15 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -21,9 +19,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class basepage {
 
@@ -41,8 +40,8 @@ public class basepage {
 			file = new FileInputStream(propertyFileName);
 			try {
 				prop.load(file);
-				// browserName = prop.getProperty("browser"); To Read a browser name from property file
-				browserName = System.getProperty("browser"); // To Read a browser name from Variable stored in jenkins
+				 browserName = prop.getProperty("browser"); //To Read a browser name from property file
+//				browserName = System.getProperty("browser"); // To Read a browser name from Variable stored in jenkins
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -199,5 +198,6 @@ public class basepage {
 		}
 		return destinationfile;
 	}
+	
 
 }
