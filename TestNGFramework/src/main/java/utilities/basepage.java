@@ -40,8 +40,8 @@ public class basepage {
 			file = new FileInputStream(propertyFileName);
 			try {
 				prop.load(file);
-				 browserName = prop.getProperty("browser"); //To Read a browser name from property file
-//				browserName = System.getProperty("browser"); // To Read a browser name from Variable stored in jenkins
+//				 browserName = prop.getProperty("browser"); //To Read a browser name from property file
+				browserName = System.getProperty("browser"); // To Read a browser name from Variable stored in jenkins
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
