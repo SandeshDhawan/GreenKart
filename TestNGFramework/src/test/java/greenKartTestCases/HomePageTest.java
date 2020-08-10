@@ -22,7 +22,7 @@ public class HomePageTest extends basepage {
 	@Test(priority = 1)
 	public void verifyGreenKartLogo() {
 		HomePage hp = new HomePage(driver);
-		hp.greenKartLogo();
+		hp.greenKartLogo(); 
 	}
 
 	@Test(priority = 2)
