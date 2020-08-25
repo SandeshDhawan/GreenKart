@@ -1,4 +1,4 @@
-# End To End Selenium Automation Framework using TestnG-Java
+# End To End Selenium Automation Framework using TestNG-Java
 
 Framework include below dependency in POM.xml
 
