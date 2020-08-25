@@ -16,7 +16,7 @@ Framework include below dependency in POM.xml
 
 ## greenKartPages
 
-In this Created seperated pages for differenr Web pages available using Page factory Structure
+In this Created seperate pages for different Web pages available using Page factory Structure
 
 ## utilities
 
