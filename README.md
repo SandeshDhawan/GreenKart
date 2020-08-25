@@ -43,4 +43,5 @@ Generated extent html report for every run with Date and Time as Folder Name
 # testng.xml
 
 provided all Test cases that we have to run.
+
 can run Test cases in parallel mode.
