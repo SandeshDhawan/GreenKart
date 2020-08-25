@@ -45,3 +45,5 @@ Generated extent html report for every run with Date and Time as Folder Name
 provided all Test cases that we have to run.
 
 can run Test cases in parallel mode.
+
+# Integrated with jenkins so that we can run our all Test Cases from jenkins
