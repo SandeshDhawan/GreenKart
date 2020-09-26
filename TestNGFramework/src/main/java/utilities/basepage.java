@@ -66,7 +66,7 @@ public class basepage {
 			e.printStackTrace();
 		}
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		maximizeBrowser();
+//		maximizeBrowser();
 		openURL();
 		return driver;
 	}
