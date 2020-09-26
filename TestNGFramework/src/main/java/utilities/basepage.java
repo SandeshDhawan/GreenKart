@@ -51,7 +51,8 @@ public class basepage {
 				if (browserName.contains("headless"))
 					options.addArguments("headless");
 				
-
+				System.out.println("Chrome driver is Opening");
+				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\chromedriver.exe");
 				driver = new ChromeDriver(options);
 
 			} else if (browserName.equalsIgnoreCase("Firefox")) {
